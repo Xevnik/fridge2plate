@@ -158,6 +158,9 @@
  margin-right: 10px;
 }
 
+#go-button{
+    margin-top:-10px;
+}
 .card {
     border: none;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
@@ -261,14 +264,6 @@ ol{
     border-radius:5px;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
 }
-
-/*@media screen and (max-height: 667px) {*/
-    /*.container {*/
-        /*margin-top:100px;*/
-        /*height: 95vh;*/
-    /*}*/
-
-/*}*/
 
 .delete{
     margin-left:10px

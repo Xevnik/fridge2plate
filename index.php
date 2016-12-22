@@ -136,7 +136,7 @@ session_start();
                         <p id="tagline">Making meals with ingredients you have</p>
                         <form class="form-inline">
                             <input type="text" class="form-control ingredientInput"  size="50" placeholder="What's in your fridge?">
-                            <button type="button" class="btn btn-danger">Go</button>
+                            <button type="button" id="go-button" class="btn btn-danger">Go</button>
                         </form>
                         <img src="images/loading-food-animation.gif" id="loading">
                     </div>
