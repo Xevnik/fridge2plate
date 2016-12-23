@@ -20,7 +20,7 @@ const CLIENT_ID = '802478348342-ovn07tr2ulnqnqk06j94cga951pufnib.apps.googleuser
 const CLIENT_SECRET = 'OAgnBd1jDS02a8nPCrLaJm8A';
 const REDIRECT_URI = 'http://localhost:8888/lfz/c11_recipe';
 session_start();
-/*
+/**
  * INITIALIZATION
  *
  * Create a google client object

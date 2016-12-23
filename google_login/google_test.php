@@ -53,7 +53,7 @@
 <!--        });-->
 <!--    </script>-->
 <!---->
-<!--<!--    You can enable users to sign out of your app without signing out of Google by adding a sign-out button or link to your site. To create a sign-out link, attach a function that calls the GoogleAuth.signOut() method to the link's onclick event. -->-->
+<!--<!--    You can enable users to sign out of your app without signing out of Google by adding a sign-out button or link to your site. To create a sign-out link, attach a function that calls the GoogleAuth.signOut() method to the link's onclick event. -->
 <!---->
 <!--    <script>-->
 <!--        function signOut() {-->
@@ -115,7 +115,7 @@
             font-weight: normal;
         }
         span.icon {
-            background: url('/identity/sign-in/g-normal.pngg') transparent 5px 50% no-repeat;
+            background: url('signin_button.png') transparent 5px 50% no-repeat;
             display: inline-block;
             vertical-align: middle;
             width: 42px;

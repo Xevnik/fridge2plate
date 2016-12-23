@@ -1,5 +1,18 @@
 .wrapper {
     background-color: blanchedalmond;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.checkout.container {
+    height: 85%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 #top-section, #bottom-section {
@@ -20,14 +33,71 @@
 #middle_border_fix {
     border-top: 0;
     border-bottom: 0;
-    padding-top: 13px;
-    padding-bottom: 13px;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 body {
     height: 100vh;
+    width: 100vw;
 }
 
-body div.wrapper {
-    height: 100%;
+header.main {
+    height: 12.5%;
+    box-sizing: border-box;
+    position: relative;
 }
+
+header.main .logo, header.main .bt-badge {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    display: inline-block;
+    /*margin: auto;*/
+}
+
+header.main .logo {
+    left: 0;
+}
+
+header.main .bt-badge {
+    right: 0;
+}
+
+.bt-badge img {
+    position: absolute;
+    max-height: 45%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+}
+
+.logo img {
+    position: absolute;
+    max-height: 90%;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.payment-form {
+    position: absolute;
+    height: 87.5%;
+}
+
+input#expiration {
+    border-bottom: 0;
+}
+
+#bottom-section {
+    padding: 0;
+}
+
+#bottom-section label.has-value {
+    border-top: 0;
+    border-bottom: 0;
+    margin-top: 0;
+}
+

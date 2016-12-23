@@ -1,14 +1,16 @@
+<?php session_start(); ?>
 <html>
 <?php require_once("braintree_head.php"); ?>
 <body>
 <?php
     require_once("braintree_init.php");
     require_once("braintree_header.php");
+//    $name = $_SESSION['fullName'];
     if (isset($_GET["id"])) {
         $transaction = Braintree\Transaction::find($_GET["id"]);
-        print("<pre>");
-        print_r($transaction);
-        print("</pre>");
+//        print("<pre>");
+//        print_r($transaction);
+//        print("</pre>");
         $transactionSuccessStatuses = [
             Braintree\Transaction::AUTHORIZED,
             Braintree\Transaction::AUTHORIZING,
@@ -21,7 +23,7 @@
         if (in_array($transaction->status, $transactionSuccessStatuses)) {
             $header = "Sweet Success!";
             $icon = "success";
-            $message = "Your test transaction has been successfully processed. See the Braintree API response and try again.";
+            $message = "Your transaction has been successfully processed. Please click the button below to add your recipe.";
         } else {
             $header = "Transaction Failed";
             $icon = "fail";
@@ -41,8 +43,8 @@
                 <p><?php echo($message)?></p>
             </section>
             <section>
-                <a class="button primary back" href="index.php">
-                    <span>Test Another Transaction</span>
+                <a class="button primary back" href="../db_prototype/feature_recipe/index.php">
+                    <span>Add Recipe</span>
                 </a>
             </section>
         </div>
@@ -53,7 +55,8 @@
     <header>
         <div class="content compact">
             <a href="https://developers.braintreepayments.com" class="braintree" target="_blank">Braintree</a>
-            <h3>API Response</h3>
+            <h3>Fridge 2 Plate</h3>
+            <h3>Receipt</h3>
         </div>
     </header>
 
@@ -95,19 +98,19 @@
 
             <table cellpadding="0" cellspacing="0">
                 <tbody>
-                <tr>
-                    <td>token</td>
-                    <td><?php echo($transaction->creditCardDetails->token)?></td>
-                </tr>
-                <tr>
-                    <td>bin</td>
-                    <td><?php echo($transaction->creditCardDetails->bin)?></td>
-                </tr>
-                <tr>
-                    <td>last_4</td>
-                    <td><?php echo($transaction->creditCardDetails->last4)?></td>
-                </tr>
-                <tr>
+<!--                <tr>-->
+<!--                    <td>token</td>-->
+<!--                    <td>--><?php //echo($transaction->creditCardDetails->token)?><!--</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>bin</td>-->
+<!--                    <td>--><?php //echo($transaction->creditCardDetails->bin)?><!--</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>last_4</td>-->
+<!--                    <td>--><?php //echo($transaction->creditCardDetails->last4)?><!--</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
                     <td>card_type</td>
                     <td><?php echo($transaction->creditCardDetails->cardType)?></td>
                 </tr>
@@ -117,11 +120,7 @@
                 </tr>
                 <tr>
                     <td>cardholder_name</td>
-                    <td><?php echo($transaction->creditCardDetails->cardholderName)?></td>
-                </tr>
-                <tr>
-                    <td>customer_location</td>
-                    <td><?php echo($transaction->creditCardDetails->customerLocation)?></td>
+                    <td><?php echo($transaction->customerDetails->firstName ." " .$transaction->customerDetails->lastName)?></td>
                 </tr>
                 </tbody>
             </table>
@@ -147,22 +146,6 @@
                     <tr>
                         <td>email</td>
                         <td><?php echo($transaction->customerDetails->email)?></td>
-                    </tr>
-                    <tr>
-                        <td>company</td>
-                        <td><?php echo($transaction->customerDetails->company)?></td>
-                    </tr>
-                    <tr>
-                        <td>website</td>
-                        <td><?php echo($transaction->customerDetails->website)?></td>
-                    </tr>
-                    <tr>
-                        <td>phone</td>
-                        <td><?php echo($transaction->customerDetails->phone)?></td>
-                    </tr>
-                    <tr>
-                        <td>fax</td>
-                        <td><?php echo($transaction->customerDetails->fax)?></td>
                     </tr>
                     </tbody>
                 </table>

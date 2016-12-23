@@ -48,7 +48,6 @@ $query_temp = 'SELECT r.`recipe_ID`, r.`name`, r.`author`, r.`url`, r.`picture_u
                ORDER BY match_count DESC
                LIMIT 20
               ';
-//TODO Once DB is sufficiently sized, Limit results to matches > 0
 //Sample
 //SELECT r.*,
 //                    (

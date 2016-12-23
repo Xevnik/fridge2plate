@@ -1,16 +1,36 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <!--Google Login Meta Tags-->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="802478348342-ovn07tr2ulnqnqk06j94cga951pufnib.apps.googleusercontent.com">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
     <!--jQuery UI-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--Login Scripts (FB & Google)-->
+<!--    <script src="facebook_login/facebook.js"></script>-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="google_login/g_login.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <style>
+        .affix {
+            top: 212px;
+        }
+    </style>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -25,23 +45,29 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" style="color: white">Link</a></li>
-                <li><a href="#" style="color: white">Link</a></li>
-                <li><a href="#" style="color: white">Link</a></li>
+<!--                <li class="fb-login-button"-->
+<!--                         data-max-rows="1"-->
+<!--                         data-size="large"-->
+<!--                         data-show-faces="false"-->
+<!--                         data-auto-logout-link="true">-->
+<!--                </li>-->
+                <li><a href="google_login/g_login.php">Feature Recipe</a></li>
+                <li class="signIn"><a id="my-signin2" data-onsuccess="onSignIn"></a></li>
+<!--                <li class="signOut"><a href="#" onclick="signOut();">Sign out</a></li>-->
             </ul>
         </div>
     </div>
 </nav>
 <div id="site-wrapper">
     <div id="site-canvas">
-        <div id="site-menu">
+        <div id="site-menu" data-spy="affix" data-offset-top="205" >
             <a href="#" class="toggle-nav" style="color: pink; font-size: 20px;"><i class="fa fa-times"></i></a>
             <img src="images/fridge2plate.png" id="logo" width="100%"><br> <br>
             <form class="form-inline">
                 <input type="text" class="form-control" placeholder="Enter your ingredients" size="30">
             </form>
             <br>
-            <div class="panel-group" id="accordion">
+            <div class="panel-group" id="accordion" >
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -66,7 +92,7 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <i class="fa fa-cutlery"></i>&nbsp;<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">My Recipes</a>
+                            <i class="fa fa-cutlery"></i>&nbsp; &nbsp;<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">My Recipes</a>
                         </h4>
                     </div>
                     <div id="collapse2" class="panel-collapse collapse in">
@@ -92,26 +118,25 @@
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="#home">Home</a></li>
+            <ul class="nav nav-pills nav-stacked" >
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#about">About Us</a></li>
             </ul>
         </div>
         <div class="container-fluid" id="main-container">
-            <div class="row">
+            <div class="row-container">
                 <div class="col-sm-12">
                     <div class="jumbotron text-center ">
-                        <!--<h1>What Should I Make?</h1>-->
-                        <img src="images/fridge2plate-jumbotron.png" width="510px">
+                        <img src="images/fridge2plate-jumbo.png" width="40%">
                         <p id="tagline">Bringing the best recipes to your home</p>
                         <form class="form-inline">
                             <input type="text" class="form-control" id="ingredientInput" size="50" placeholder="What's in your fridge?">
                             <button type="button" class="btn btn-danger">Go</button>
                         </form>
-                        <img src="http://yiyecem.com/images/loading.gif" id="loading" style="display:none; height:220px;">
+                        <img src="images/loading-food-animation.gif" id="loading">
                     </div>
                     <div class="container-fluid fridge"></div>    <!--fridge container-->
-                    <div class="row">
+                    <div class="row-container">
                         <div id="stuff"></div>
                     </div>
                 </div>
@@ -129,9 +154,10 @@
                 <h4 class="modal-title" id="myModalLabel">My Recipe</h4>
             </div>
             <div class="modal-body">
-                <img class="showImage img-responsive" src="">
-                <div class="ingContainer"></div>
-                <!--<p>Servings: 5 </p>-->
+                <div class="row">
+                <img class=" .col-sm-4  pull-right showImage img-responsive" src="">
+                <div class=".col-sm-5  ingContainer"></div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

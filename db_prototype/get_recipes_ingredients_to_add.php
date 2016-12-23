@@ -24,7 +24,7 @@
         $.ajax({
             dataType: 'json',
             method: 'get',
-            url:'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=true&number=5',
+            url:'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=true&number=25',
             //url:'./recipe/spoon_random.php',
             headers: spoonAccess,
             success: function(resp){
@@ -84,7 +84,7 @@
         //console.log('ingredients: ', ingredients, ' recipes ', recipes);
         $.ajax({
             method: 'post',
-            url: 'insert_recipe.php',
+            url: 'insert_recipe_ingredients.php',
             dataType: 'json',
             data: dataToSend,
             success: function(resp){
