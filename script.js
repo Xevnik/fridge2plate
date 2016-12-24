@@ -8,6 +8,7 @@ $(document).ready(function () {
 /**
  * Global Variables
  */
+var ingredientsObjForAutocomplete;
 var updatedIngredientsArray;
 var newIngredients;
 var ingredientsID = [];
@@ -18,10 +19,10 @@ var selectedIngredients = {};
 var featuredRecipe = function () {
     console.log("featuredRecipe()");
     $.ajax({
-        url: "./db_prototype/recipe/featuredRecipeList.js",
+        url: "./db_prototype/recipe/featuredRecipeList.json",
         dataType: "json",
         method: "post",
-        success: function(resp){
+        success: function(featureRecipesList){
             var imgSrc;
             var recipeName;
             var authorName;
@@ -102,8 +103,9 @@ var getIngredients = function () {
         dataType: "json",
         cache: false,
         success: function (resp) {
+            ingredientsObjForAutocomplete = resp;
             updatedIngredientsArray = [];
-            newIngredients = ingredientsObjForAutocomplete.data;
+            newIngredients = resp.data;
             for (var key in newIngredients) {
                 if (newIngredients.hasOwnProperty(key)) {
                     updatedIngredientsArray.push(key);
@@ -118,7 +120,7 @@ var getIngredients = function () {
                 var ingredientInputSelected = $(".ingredientInput").val();
                 var objectData = ingredientsObjForAutocomplete.data[ingredientInputSelected];
                 ingredientCheck(objectData);
-                console.log("Ingredients Added to Fridge From Input", ingredientsID);
+                //console.log("Ingredients Added to Fridge From Input", ingredientsID);
                 $(".ingredientInput").val("");
             });
             // //-----On KeyPress Enter-----
@@ -140,9 +142,9 @@ var getIngredients = function () {
  * @returns - recipes from get_recipes.php
  */
 var getRecipe = function () {
+    console.log('ingredients ids:', ingredientsID);
     loadStart();
     $.ajax({
-
         url: "./db_prototype/get_recipes.php",
         dataType: "json",
         method: "post",
@@ -296,37 +298,45 @@ var noExist = function () {
  * navIngredientButtons - Creates Buttons from mostCommonIngredients.js and displays them on Nav menu
  */
 var navIngredientButtons = function () {
-    console.log("navIngredientButtons()")
-    var mostCommonIngredients2 = mostCommonIngredients.data;
-    var mostCommonIngredientsKeyNameArray = [];
-    var mostCommonIngredientsKeyValueArray = [];
+    $.ajax({
+        url: './db_prototype/recipe/popularIngredients.json',
+        dataType: 'json',
+        method: 'post',
+        cache: false,
+        success:function(response){
+            //console.log("navIngredientButtons()");
+            var mostCommonIngredients2 = response.data;
+            var mostCommonIngredientsKeyNameArray = [];
+            var mostCommonIngredientsKeyValueArray = [];
 
-    for (var key in mostCommonIngredients2) {
-        if (mostCommonIngredients2.hasOwnProperty(key)) {
-            mostCommonIngredientsKeyNameArray.push(key);
-            mostCommonIngredientsKeyValueArray.push(mostCommonIngredients2[key])
+            for (var key in mostCommonIngredients2) {
+                if (mostCommonIngredients2.hasOwnProperty(key)) {
+                    mostCommonIngredientsKeyNameArray.push(key);
+                    mostCommonIngredientsKeyValueArray.push(mostCommonIngredients2[key])
+                }
+            }
+            (function () {
+                var ingredientValue;
+                var ingredientName;
+
+                for (var i = 0; i < mostCommonIngredientsKeyValueArray.length; i++) {
+                    ingredientValue = mostCommonIngredientsKeyValueArray[i];
+                }
+
+                for (var j = 0; j < mostCommonIngredientsKeyNameArray.length; j++) {
+                    ingredientName = mostCommonIngredientsKeyNameArray[j];
+                    ingredientValue = mostCommonIngredientsKeyValueArray[j];
+
+                    var button = $("<button>", {
+                        class: "btn btn-info topIng",
+                        html: ingredientName,
+                        value: ingredientValue
+                    });
+                    $("#ingredientButtons").append(button)
+                }
+            })()
         }
-    }
-    (function () {
-        var ingredientValue;
-        var ingredientName;
-
-        for (var i = 0; i < mostCommonIngredientsKeyValueArray.length; i++) {
-            ingredientValue = mostCommonIngredientsKeyValueArray[i];
-        }
-
-        for (var j = 0; j < mostCommonIngredientsKeyNameArray.length; j++) {
-            ingredientName = mostCommonIngredientsKeyNameArray[j];
-            ingredientValue = mostCommonIngredientsKeyValueArray[j];
-
-            var button = $("<button>", {
-                class: "btn btn-info topIng",
-                html: ingredientName,
-                value: ingredientValue
-            });
-            $("#ingredientButtons").append(button)
-        }
-    })()
+    });
 };
 /**
  * buttonsPushedToMainDisplay - Buttons On NAV to Main Display
@@ -449,12 +459,12 @@ var autoCompleteFilter = function () {
         //source: ingred,
         source: updatedIngredientsArray,
         select: function(e, ui){
-            console.log("SELECTED");
+            //console.log("SELECTED");
 
             var ingredient = ui.item.value;
             var value = ingredientsObjForAutocomplete.data[ingredient];
-            console.log(ingredient);
-            console.log(value);
+            //console.log(ingredient);
+            //console.log(value);
 
             txtArr.push(ingredient);
             ingredientsID.push(value);
