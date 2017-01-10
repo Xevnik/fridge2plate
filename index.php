@@ -1,17 +1,21 @@
 <?php
 session_start();
 //$redirect_uri = "https://" . $_SERVER['HTTP_HOST'] . "/google_login/g_login.php";
-$mboutiquePages = [
-    'home'=>['header'=>'main_header.php','url'=>'main.php'],
-    'login'=>['nav'=>'OUR MACARONS','url'=>'our_macarons.php'],
+$recipePages = [
+    'home'=>['header'=>'main_header.php','body'=>'main.php'],
+    'login'=>['nav'=>'OUR MACARONS','body'=>'our_macarons.php'],
     'payment'=>[],
     'receipt'=>[],
-    'feature-recipe'=>['nav'=>'GIFTS & PARTIES', 'url'=>'gifts_parties.php'],
-    'about-us'=>['nav'=>'CONTACT','url'=>'contact.php']
+    'feature-recipe'=>['nav'=>'GIFTS & PARTIES', 'body'=>'gifts_parties.php'],
+    'about-us'=>['nav'=>'CONTACT','body'=>'contact.php']
 ];
 $urlRequest = $_GET['page'];
 if(empty($_REQUEST)){
-    print("hello");
+    $theHeader = $recipePages['home']['header'];
+    $theBody =$recipePages['home']['body'];
+}else{
+    $theHeader = $recipePages['home']['header'];
+    $theBody =$recipePages['home']['body'];
 }
 ?>
 
@@ -19,8 +23,8 @@ if(empty($_REQUEST)){
 <html>
 
 <?php
-include_once('main_header.php');
-include_once('main.php');
+include_once($theHeader);
+include_once($theBody);
 ?>
 
 </html>
