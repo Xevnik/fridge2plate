@@ -30,7 +30,7 @@ require_once("braintree_init.php");
                                id="first_name" autocomplete="off"/>
                     </div>
                 </label>
-                <label for="l_name" id="middle_border_fix">
+                <label for="l_name" class="middle_border_fix">
                     <span class="input-label">Last Name</span>
                     <div class="input-wrapper last-name-wrapper">
                         <input type="text" name="last_name" value="<?= $l_name; ?>" placeholder="Last Name"

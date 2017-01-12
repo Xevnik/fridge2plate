@@ -1337,7 +1337,7 @@ label {
     font-weight: 300;
     padding: 12px 14px;
     position: relative;
-    margin-top: -11px;
+    margin-top: 0;
     width: 100%;
     z-index: 1; }
 label .input-label {
