@@ -26,9 +26,9 @@ session_start();
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/fridge2plate.png">
-    <script src="./db_prototype/recipe/ingredients.js"></script>
-    <script src="./db_prototype/recipe/popularIngredients.js"></script>
-    <script src="./db_prototype/recipe/featuredRecipeList.js"></script>
+<!--    <script src="./db_prototype/recipe/ingredients.js"></script>-->
+<!--    <script src="./db_prototype/recipe/popularIngredients.js"></script>-->
+<!--    <script src="./db_prototype/recipe/featuredRecipeList.js"></script>-->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
     <script src="script.js"></script>
 
