@@ -127,7 +127,7 @@ function sendFormData(){
         success: function(resp){
             if(resp.success){
                 //Todo change to correct domain
-                window.location = "http://localhost/lfz/c11_recipe/";
+                window.location = "https://fridge2plate.com/";
             }
         }
     });

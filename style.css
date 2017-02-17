@@ -1,3 +1,4 @@
+
 .jumbotron{
     color: #ffffff;
     background-image: url("images/food photo2.jpg");
@@ -156,6 +157,10 @@
 }
 .btn-info .addedIng{
  margin-right: 10px;
+}
+
+#go-button{
+	margin-top: -10px;
 }
 
 .card {

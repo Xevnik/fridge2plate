@@ -141,7 +141,7 @@
         },
         "time": "2016-10-04 00:57:04",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "files": [
                 "phpseclib/bootstrap.php"
@@ -228,7 +228,7 @@
                 "dev-master": "1.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Psr\\Log\\": "Psr/Log/"
@@ -307,7 +307,7 @@
                 "dev-master": "2.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Monolog\\": "src/Monolog"
@@ -357,7 +357,7 @@
                 "dev-master": "1.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Psr\\Http\\Message\\": "src/"
@@ -416,7 +416,7 @@
                 "dev-master": "1.4-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "GuzzleHttp\\Psr7\\": "src/"
@@ -472,7 +472,7 @@
                 "dev-master": "1.0-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "GuzzleHttp\\Promise\\": "src/"
@@ -529,7 +529,7 @@
                 "dev-master": "6.2-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "files": [
                 "src/functions_include.php"
@@ -586,7 +586,7 @@
                 "dev-master": "1.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Psr\\Cache\\": "src/"
@@ -629,7 +629,7 @@
         },
         "time": "2016-07-18 04:51:16",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Firebase\\JWT\\": "src"
@@ -683,7 +683,7 @@
         },
         "time": "2016-11-02 14:59:14",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "classmap": [
                 "src/"
@@ -724,7 +724,7 @@
         },
         "time": "2016-10-18 01:01:16",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Google_Service_": "src"
@@ -782,7 +782,7 @@
                 "dev-master": "2.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-0": {
                 "Google_": "src/"
