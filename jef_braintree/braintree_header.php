@@ -1,6 +1,6 @@
 <header class="col-xs-12 main">
     <div class="col-xs-12 col-sm-6 logo">
-        <a href="http://localhost:8888/lfz/c11_recipe/"><img src="../images/fridge2plate.png"></a>
+        <a href="../index.php"><img src="../images/fridge2plate.png"></a>
     </div>
 
     <div class="col-xs-12 col-sm-6 bt-badge">

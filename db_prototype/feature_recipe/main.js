@@ -47,7 +47,7 @@ function addRow(){
                 )
             )
     );
-    count++
+    count++;
 }
 /**
  * function validateForm - checks that all required inputs are not empty
