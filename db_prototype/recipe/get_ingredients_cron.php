@@ -37,7 +37,7 @@ $result->close();
 //file write out test
 if($output['success']) {
     $output_json = json_encode($output);
-    $ingredientFile = fopen(__DIR__.'/ingredients.js', "w") or die("Unable to open file");
-    fwrite($ingredientFile, "var ingredientsObjForAutocomplete = $output_json;");
+    $ingredientFile = fopen(__DIR__.'/ingredients.json', "w") or die("Unable to open file");
+    fwrite($ingredientFile, $output_json);
     fclose($ingredientFile);
 }
