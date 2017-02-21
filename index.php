@@ -1,6 +1,7 @@
 <?php
 session_start();
 //$redirect_uri = "https://" . $_SERVER['HTTP_HOST'] . "/google_login/g_login.php";
+$baseUrl = $_SERVER['SERVER_NAME'];
 if(!empty($_GET)) {
   print_r($_GET["recipe"]);
 }
@@ -27,11 +28,11 @@ if(!empty($_GET)) {
 <!--    <script src="https://apis.google.com/js/platform.js" async defer></script>-->
 <!--    <script src="google_login/g_login.js" async defer></script>-->
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/fridge2plate.png">
+    <link rel="stylesheet" href="<?=$baseUrl?>/style.css">
+    <link rel="icon" href="<?=$baseUrl?>/images/fridge2plate.png">
 
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
-    <script src="./script.js"></script>
+    <script src="<?=$baseUrl?>/script.js"></script>
 
     <style>
         .affix {
@@ -59,11 +60,11 @@ if(!empty($_GET)) {
                          <!--data-show-faces="false"-->
                          <!--data-auto-logout-link="true">-->
                 <!--</li>-->
-                <li><a href="./google_login/g_login.php">Feature Recipe</a></li>
+                <li><a href="<?=$baseUrl?>/google_login/g_login.php">Feature Recipe</a></li>
                 <li class="signIn"><a id="my-signin2" data-onsuccess="onSignIn"></a></li>
                 <!--<li class="signOut"><a href="#" onclick="signOut();">Sign out</a></li>-->
                 <script src="https://apis.google.com/js/platform.js" defer></script>
-                <script src="./g_login_root.js" defer></script>
+                <script src="<?=$baseUrl?>/g_login_root.js" defer></script>
             </ul>
         </div>
     </div>
