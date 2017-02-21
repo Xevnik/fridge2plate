@@ -2,7 +2,7 @@
 session_start();
 //$redirect_uri = "https://" . $_SERVER['HTTP_HOST'] . "/google_login/g_login.php";
 
-if(isset(S_SERVER["HTTPS"])){
+if(isset($_SERVER["HTTPS"]){
   $baseUrl = 'https://' . $_SERVER['SERVER_NAME'];
 }else{
   $baseUrl = 'http://' . $_SERVER['SERVER_NAME'];
