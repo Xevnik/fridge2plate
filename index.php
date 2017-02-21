@@ -1,13 +1,15 @@
 <?php
 session_start();
 //$redirect_uri = "https://" . $_SERVER['HTTP_HOST'] . "/google_login/g_login.php";
+if($_GET) {
+  $requestRecipe = $_GET("recipe");
+  print $requestRecipe;
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="title" content="Fridge 2 Plate">
-  <meta name="description" content="Add ingredients and find recipes with those ingredients">
     <!--Google Login Meta Tags-->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="802478348342-ovn07tr2ulnqnqk06j94cga951pufnib.apps.googleusercontent.com">
@@ -28,9 +30,7 @@ session_start();
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/fridge2plate.png">
-<!--    <script src="./db_prototype/recipe/ingredients.js"></script>-->
-<!--    <script src="./db_prototype/recipe/popularIngredients.js"></script>-->
-<!--    <script src="./db_prototype/recipe/featuredRecipeList.js"></script>-->
+
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
     <script src="script.js"></script>
 
@@ -125,8 +125,8 @@ session_start();
                 </div>-->
             </div>
             <ul class="nav nav-pills nav-stacked" >
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li><a href=" http://devjournal.fridge2plate.com/" target="_blank">Our Blog</a></li>
 
             </ul>
@@ -139,7 +139,7 @@ session_start();
                         <p id="tagline">Making meals with ingredients you have</p>
                         <form class="form-inline">
                             <input type="text" class="form-control ingredientInput"  size="50" placeholder="What's in your fridge?">
-                            <!-- <button type="button" id="go-button" class="btn btn-danger">Go</button> -->
+                            <button type="button" id="go-button" class="btn btn-danger">Go</button>
                         </form>
                         <img src="images/loading-food-animation.gif" id="loading">
                     </div>
