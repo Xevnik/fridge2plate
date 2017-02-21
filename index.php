@@ -31,7 +31,7 @@ if(!empty($_GET)) {
     <link rel="icon" href="images/fridge2plate.png">
 
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
     <style>
         .affix {
@@ -59,11 +59,11 @@ if(!empty($_GET)) {
                          <!--data-show-faces="false"-->
                          <!--data-auto-logout-link="true">-->
                 <!--</li>-->
-                <li><a href="google_login/g_login.php">Feature Recipe</a></li>
+                <li><a href="./google_login/g_login.php">Feature Recipe</a></li>
                 <li class="signIn"><a id="my-signin2" data-onsuccess="onSignIn"></a></li>
                 <!--<li class="signOut"><a href="#" onclick="signOut();">Sign out</a></li>-->
                 <script src="https://apis.google.com/js/platform.js" defer></script>
-                <script src="g_login_root.js" defer></script>
+                <script src="./g_login_root.js" defer></script>
             </ul>
         </div>
     </div>
@@ -72,7 +72,7 @@ if(!empty($_GET)) {
     <div id="site-canvas">
         <div id="site-menu" data-spy="affix" data-offset-top="205" >
             <a href="#" class="toggle-nav" style="color: pink; font-size: 20px;"><i class="fa fa-times"></i></a>
-            <img src="images/fridge2plate.png" id="logo" width="100%"><br> <br>
+            <img src="./images/fridge2plate.png" id="logo" width="100%"><br> <br>
             <form class="form-inline">
                 <input type="text" class="form-control ingredientInput"  size="30" placeholder="Enter your ingredients">
 <!--                <input type="text" class="form-control" placeholder="Enter your ingredients" size="30">-->
@@ -124,8 +124,8 @@ if(!empty($_GET)) {
                 </div>-->
             </div>
             <ul class="nav nav-pills nav-stacked" >
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About Us</a></li>
                 <li><a href=" http://devjournal.fridge2plate.com/" target="_blank">Our Blog</a></li>
 
             </ul>
@@ -134,13 +134,13 @@ if(!empty($_GET)) {
             <div class="row-container">
                 <div class="col-sm-12">
                     <div class="jumbotron text-center ">
-                        <img src="images/fridge2plate-jumbo.png" width="40%">
+                        <img src="./images/fridge2plate-jumbo.png" width="40%">
                         <p id="tagline">Making meals with ingredients you have</p>
                         <form class="form-inline">
                             <input type="text" class="form-control ingredientInput"  size="50" placeholder="What's in your fridge?">
                             <button type="button" id="go-button" class="btn btn-danger">Go</button>
                         </form>
-                        <img src="images/loading-food-animation.gif" id="loading">
+                        <img src="./images/loading-food-animation.gif" id="loading">
                     </div>
                     <div class="container-fluid fridge"></div>    <!--fridge container-->
                     <div class="row-container">
