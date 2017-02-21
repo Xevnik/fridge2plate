@@ -1,4 +1,5 @@
 # Fridge 2 Plate
+[Live](https://fridge2plate.com "Fridge 2 Plate")
 #### Description
 A website to figure out what to make with ingredients you have. Users find recipes by entering ingredients. 
 More ingredients returns a more specific result of recipes that matches the ingredients given. 
