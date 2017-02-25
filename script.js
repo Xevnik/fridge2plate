@@ -19,7 +19,7 @@ var selectedIngredients = {};
 var featuredRecipe = function() {
     //console.log("featuredRecipe()");
     $.ajax({
-        url: "./db/recipe/featuredRecipeList.json",
+        url: "/db/recipe/featuredRecipeList.json",
         dataType: "json",
         method: "post",
         success: function(featureRecipesList) {
@@ -98,7 +98,7 @@ var featuredRecipe = function() {
 var getIngredients = function() {
     // -----------Auto Complete-----------
     $.ajax({
-        url: "./db/recipe/ingredients.json",
+        url: "/db/recipe/ingredients.json",
         method: "post",
         dataType: "json",
         cache: false,
@@ -145,7 +145,7 @@ var getRecipe = function() {
     //console.log('ingredients ids:', ingredientsID);
     loadStart();
     $.ajax({
-        url: "./db/get_recipes.php",
+        url: "/db/get_recipes.php",
         dataType: "json",
         method: "post",
         data: {
@@ -299,7 +299,7 @@ var noExist = function() {
  */
 var navIngredientButtons = function() {
     $.ajax({
-        url: './db/recipe/popularIngredients.json',
+        url: '/db/recipe/popularIngredients.json',
         dataType: 'json',
         method: 'post',
         cache: false,

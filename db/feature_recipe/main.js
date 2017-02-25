@@ -143,7 +143,7 @@ function removeRow(){
  * function clearForm - resets all inputs and select within the form
  */
 function clearForm(){
-    console.log('clear!');
+    //console.log('clear!');
     $('input').val('');
     $('textarea').val('');
     $('select option[value=" "]').prop('selected', true);

@@ -29,7 +29,7 @@ function insertRecipesAndItsIngredients($connect, $recipesList){
         //user-added recipes need id
         if(!isset($recipe['givenId'])){
             //echo "Giving given_id";
-            $lastGivenIdResult = $connect->query("SELECT `given_ID` FROM `recipes` 
+            $lastGivenIdResult = $connect->query("SELECT `given_ID` FROM `recipes`
                                             GROUP BY `given_ID` DESC ORDER BY `recipes`.`given_ID` ASC LIMIT 1");
             $givenIdResultRow = $lastGivenIdResult->fetch_assoc();
             $recipe['givenId'] = $givenIdResultRow["given_ID"];
@@ -45,7 +45,7 @@ function insertRecipesAndItsIngredients($connect, $recipesList){
         $r_name = trim($recipe['name']);
         $r_author = trim($recipe['author']);
         $r_url = trim($recipe['url']);
-        $r_img = ($recipe['img']==="")?"./images/placeholder_360.jpg":trim($recipe['img']);
+        $r_img = ($recipe['img']==="")?"/images/placeholder_360.jpg":trim($recipe['img']);
         $r_instruct = trim($recipe['instructions']);
         $r_time = $recipe['cookingTime'];
         //insert recipe and proceed if insert is successful
