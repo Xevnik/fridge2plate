@@ -2,9 +2,9 @@
 session_start();
 //$redirect_uri = "https://" . $_SERVER['HTTP_HOST'] . "/google_login/g_login.php";
 
-if(!empty($_GET)) {
-  print_r($_GET["recipe"]);
-}
+  if(!empty($_GET)) {
+    print_r($_GET["recipe"]);
+  }
 ?>
 
 <!DOCTYPE html>
