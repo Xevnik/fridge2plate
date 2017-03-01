@@ -364,15 +364,15 @@ var buttonsPushedToMainDisplay = function() {
 /**
  * getValue - Pushes Buttons to Container Using the "GO" Button
  */
-var theValue;
-var txtArr = [];
-var getValue = function() {
-    $('.ingredientInput').each(function() {
-        theValue = $(this).val();
-        txtArr.push(theValue);
-        newButtonCreation();
-    });
-};
+// var theValue;
+// var txtArr = [];
+// var getValue = function() {
+//     $('.ingredientInput').each(function() {
+//         theValue = $(this).val();
+//         txtArr.push(theValue);
+//         newButtonCreation();
+//     });
+// };
 /**
  * removeIng - Removes Buttons off the Main Display and ingredientsID Array
  */
