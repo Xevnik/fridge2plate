@@ -4,6 +4,7 @@ $(document).ready(function() {
     getIngredients();
     buttonsPushedToMainDisplay();
     titleImgToModal();
+
 });
 /**
  * Global Variables
@@ -19,7 +20,7 @@ var selectedIngredients = {};
 var featuredRecipe = function() {
     //console.log("featuredRecipe()");
     $.ajax({
-        url: "/db/recipe/featuredRecipeList.json",
+        url: "./db/recipe/featuredRecipeList.json",
         dataType: "json",
         method: "post",
         success: function(featureRecipesList) {
@@ -98,7 +99,7 @@ var featuredRecipe = function() {
 var getIngredients = function() {
     // -----------Auto Complete-----------
     $.ajax({
-        url: "/db/recipe/ingredients.json",
+        url: "./db/recipe/ingredients.json",
         method: "post",
         dataType: "json",
         cache: false,
@@ -145,7 +146,7 @@ var getRecipe = function() {
     //console.log('ingredients ids:', ingredientsID);
     loadStart();
     $.ajax({
-        url: "/db/get_recipes.php",
+        url: "./db/get_recipes.php",
         dataType: "json",
         method: "post",
         data: {
@@ -299,7 +300,7 @@ var noExist = function() {
  */
 var navIngredientButtons = function() {
     $.ajax({
-        url: '/db/recipe/popularIngredients.json',
+        url: './db/recipe/popularIngredients.json',
         dataType: 'json',
         method: 'post',
         cache: false,
@@ -364,15 +365,15 @@ var buttonsPushedToMainDisplay = function() {
 /**
  * getValue - Pushes Buttons to Container Using the "GO" Button
  */
-// var theValue;
-// var txtArr = [];
-// var getValue = function() {
-//     $('.ingredientInput').each(function() {
-//         theValue = $(this).val();
-//         txtArr.push(theValue);
-//         newButtonCreation();
-//     });
-// };
+var txtArr = [];
+var getValue = function() {
+    $('.ingredientInput').each(function() {
+        var theValue;
+        theValue = $(this).val();
+        txtArr.push(theValue);
+        newButtonCreation();
+    });
+};
 /**
  * removeIng - Removes Buttons off the Main Display and ingredientsID Array
  */
@@ -503,18 +504,16 @@ var titleImgToModal = function() {
  */
 $(function() {
     // Toggle Nav on Click
-    $('.toggle-nav').click(function() {
-        // Calling a function in case you want to expand upon this.
-        toggleNav();
-    });
+    $('.toggle-nav').click(toggleNav);
+    $('site-canvas').click(closeNav);
 });
 
 function toggleNav() {
-    if ($('#site-wrapper').hasClass('show-nav')) {
-        // Do things on Nav Close
-        $('#site-wrapper').removeClass('show-nav');
-    } else {
-        // Do things on Nav Open
-        $('#site-wrapper').addClass('show-nav');
-    }
+    $('#site-wrapper').toggleClass('show-nav');
+}
+
+function closeNav() {
+  if($('#site-wrapper').hasClass('show-nav')) {
+    $('site-wrapper').toggleClass('show-nav')
+  }
 }
