@@ -47,7 +47,7 @@ function addRow(){
                 )
             )
     );
-    count++
+    count++;
 }
 /**
  * function validateForm - checks that all required inputs are not empty
@@ -126,8 +126,7 @@ function sendFormData(){
         dataType: 'json',
         success: function(resp){
             if(resp.success){
-                //Todo change to correct domain
-                window.location = "https://fridge2plate.com/";
+                window.location = "https://fridge2plate.com";
             }
         }
     });
@@ -143,7 +142,7 @@ function removeRow(){
  * function clearForm - resets all inputs and select within the form
  */
 function clearForm(){
-    console.log('clear!');
+    //console.log('clear!');
     $('input').val('');
     $('textarea').val('');
     $('select option[value=" "]').prop('selected', true);

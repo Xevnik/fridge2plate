@@ -1,50 +1,51 @@
-
-.jumbotron{
+.jumbotron {
     color: #ffffff;
     background-image: url("images/food photo2.jpg");
     background-size: cover;
     font-family: 'Raleway', sans-serif;
-    font-size:45px;
+    font-size: 45px;
     text-shadow: 1px 1px 2px #808080;
-    margin:0;
+    margin: 0;
 }
-.jumbotron>#tagline{
-    font-size:22px;
+
+.jumbotron>#tagline {
+    font-size: 22px;
     font-family: 'Raleway Light', sans-serif;
     text-shadow: 2px 2px 6px #000000;
 }
 
-.ingContainer{
+.ingContainer {
     padding-left: 20px;
     padding-right: 36px;
 }
 
-.ingContainer>h3{
-   color:#14967c
+.ingContainer>h3 {
+    color: #14967c
 }
 
-#myModal{
+#myModal {
     font-family: 'Raleway', sans-serif;
 }
-.modal-header{
-    color:#14967c
+
+.modal-header {
+    color: #14967c
 }
 
-.modal-content{
-  width: 800px;
+.modal-dialog {
+  width: 60%;
 }
 
-.row-container{
-    height:1000px;
+.row-container {
+    height: 1000px;
 }
 
-.sidenav{
+.sidenav {
     height: 100%
 }
 
-.nav-pills>li.active>a:hover{
-    background-color:dodgerblue;
-    color:white;
+.nav-pills>li.active>a:hover {
+    background-color: dodgerblue;
+    color: white;
 }
 
 @media screen and (max-width: 767px) {
@@ -52,7 +53,9 @@
         height: auto;
         padding: 15px;
     }
-    .row.content {height: auto;}
+    .row.content {
+        height: auto;
+    }
 }
 
 .navbar {
@@ -63,7 +66,7 @@
     margin-bottom: 0;
     font-size: 14px;
     letter-spacing: 3px;
-    opacity:0.7;
+    opacity: 0.7;
     background-color: #1abc9c;
 }
 
@@ -71,21 +74,23 @@
     color: white;
 }
 
-.nav-menu{
-    margin:0px 20px 0px 30px;    /*top right bottom left*/
+.nav-menu {
+    margin: 0px 20px 0px 30px;
+    /*top right bottom left*/
 }
 
-.navbar-nav>li>a{
+.navbar-nav>li>a {
     padding-top: 7px;
     padding-bottom: 12px;
-    line-height:36px
+    line-height: 36px
 }
 
 .nav>li>a {
     padding: 10px 10px;
 }
 
-#ingredientButtons .topIng {    /*for dynamic top Ing*/
+#ingredientButtons .topIng {
+    /*for dynamic top Ing*/
     margin-right: 5px;
 }
 
@@ -93,7 +98,8 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: auto; /* Temp: Simulates a tall page. */
+    height: auto;
+    /* Temp: Simulates a tall page. */
 }
 
 #site-canvas {
@@ -101,40 +107,46 @@
     height: 100%;
     position: relative;
     transform: translateX(0);
-    transition: 300ms ease all;
+    transition: 200ms ease all;
     backface-visibility: hidden;
 }
+
 .show-nav #site-canvas {
-    padding-right:300px;
+    padding-right: 300px;
     transform: translateX(300px);
 }
+
 #site-menu {
     width: 300px;
     height: 100%;
     position: fixed;
     left: -300px;
     padding: 15px;
+    background: white;
+    z-index: 10;
+    transition: 0.3s;
+
 }
 
-#logo{
-    margin-bottom:12px;
+#logo {
+    margin-bottom: 12px;
 }
 
 .thumbnail {
     height: 300px;
 }
 
-#main-container{
+#main-container {
     background-color: blanchedalmond;
     padding: 0;
 }
 
-#ingredientButtons .topIng{
+#ingredientButtons .topIng {
     display: inline-block;
     margin-bottom: 5px;
 }
 
-.fridgeButton{
+.fridgeButton {
     margin-right: 10px;
 }
 
@@ -144,19 +156,26 @@
     overflow-x: hidden;
 }
 
-.fridge{
+.fridge {
     padding: 12px 16px;
-    background-color:whitesmoke;
+    background-color: whitesmoke;
     margin-bottom: 20px;
 }
-.btn-info{
+
+.btn-info {
     border-color: transparent;
 }
-.topIng.selected{
+
+.topIng.selected {
     background-color: gray;
 }
-.btn-info .addedIng{
- margin-right: 10px;
+
+.btn-info .addedIng {
+    margin-right: 10px;
+}
+
+#go-button {
+    margin-top: -10px;
 }
 
 #go-button{
@@ -178,31 +197,37 @@
     background-color: white;
 }
 
-.card-title{
+.card-title {
     font-family: 'Raleway', sans-serif;
     /*font-size:25px;*/
     /*font-size: 22px;*/
-    font-size:2.5vmin;
-}
-.card-text{
-    font-size: 15px;
+    font-size: 2.5vmin;
+    height: 73px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+.card-text {
+    font-size: 2rem;
     padding-left: 6px;
     padding-bottom: 5px;
 }
-.steps-style>h3{
-    color:#14967c
+
+.steps-style>h3 {
+    color: #14967c
 }
 
-ol{
+ol {
     max-height: 200px;
     overflow: auto;
 }
 
-
-.showImage{
+.showImage {
     width: 400px;
-    height:300px;
-    object-fit:cover;
+    height: 300px;
+    object-fit: cover;
     margin-right: 15px;
     margin-left: 33px;
     padding: 15px;
@@ -212,89 +237,99 @@ ol{
     object-fit: cover;
 }
 
-.footer-style{
+.footer-style {
     background-color: #1abc9c;
     color: #fff;
-    font-size:16px;
+    font-size: 16px;
     padding-top: 60px;
     padding-bottom: 60px;
 }
 
-#loading{
-    display:none;
+#loading {
+    display: none;
     transform: translateX(-120px) translateY(-25px);
     position: absolute;
-    height:150px;
+    height: 150px;
 }
 
-.fb-login-button{
+.fb-login-button {
     margin-top: 14px;
     margin-right: 12px;
 }
 
-#aboutImg{
+#aboutImg {
     width: 300px;
     height: 300px;
     margin-bottom: 20px;
     margin-top: 20px
 }
 
-.addthis_inline_share_toolbox_co79{
-    margin-top:25px;
-    margin-left:20px;
-    margin-bottom:10px
-}
-/* CSS styling for feature recipe form */
-.addRecipe{
-    text-align:center
+.addthis_inline_share_toolbox_co79 {
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-bottom: 10px
 }
 
-.body-style{
+
+/* CSS styling for feature recipe form */
+
+.addRecipe {
+    text-align: center
+}
+
+.body-style {
     /*background-color:#1abc9c;*/
     background-image: url("images/add-form.jpg");
     background-size: cover;
-
 }
-.container{
+
+.container {
     background-color: white;
-    font-family:"Raleway",sans-serif;
+    font-family: "Raleway", sans-serif;
     width: 90vmin;
     height: auto;
-    margin-top:35px;
+    margin-top: 35px;
     margin-bottom: 35px;
     padding-bottom: 22px;
-    border-radius:5px;
+    border-radius: 5px;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
 }
 
-/*@media screen and (max-height: 667px) {*/
-    /*.container {*/
-        /*margin-top:100px;*/
-        /*height: 95vh;*/
-    /*}*/
-
-/*}*/
-
-.delete{
-    margin-left:10px
+.delete {
+    margin-left: 10px
 }
 
-h2{
-    padding-top:30px;
-    margin-top:8px;
+h2 {
+    padding-top: 30px;
+    margin-top: 8px;
 }
 
-#clearBtn{
+#clearBtn {
     margin-right: 10px;
 }
 
-.form-control{
-    margin-bottom:10px;
+.form-control {
+    margin-bottom: 10px;
 }
 
-.abcRioButton{
+.abcRioButton {
     height: 49px;
     width: 216px;
     margin-top: -7px;
     margin-right: -19px;
+}
+
+@media only screen and (max-device-width: 1024px){
+    .modal-dialog {
+        width: 85%;
+    }
+
+    .show-nav #site-canvas{
+      padding-right: 0;
+      transform: translateX(0);
+    }
+
+    .show-nav #site-menu{
+      left: 0;
+    }
 }

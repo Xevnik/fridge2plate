@@ -2,25 +2,34 @@
 /**
  * Created by PhpStorm.
  * User: kevin
- * Date: 12/11/16
- * Time: 12:29 PM
+ * Date: 11/28/16
+ * Time: 12:26 PM
+ * Gets the specific recipe by name for sharing and direct accessing.
  */
 
-require_once("../config/connect.php");
+require_once('config/connect.php');
 
-if($conn->connect_errno){
-    die("Failed to Connect: " . $conn->connect_error);
+$output = [
+    'success' => false,
+    'data' => []
+];
+
+if ($conn->connect_errno) {
+    $output = [
+        'success' => false,
+        'data' => "Connect failed: %s\n", $conn->connect_error
+    ];
+    print(json_encode($output));
+    exit();
 }
-//Gets id of featured recipe from featuredRecipe table and get matching recipes from recipes table
-$query_temp = "
-  SELECT r.`recipe_ID`, r.`name`, r.`author`, r.`url`, r.`picture_url`, r.`instructions`, r.`cookTime` 
-  FROM `featuredRecipes` f 
-  JOIN recipes r 
-  ON f.`recipe_ID`=r.`recipe_ID` 
-  ORDER BY f.`recipe_ID` DESC
-";
 
-//this part can be templated from get_recipes.php
+//expecting array of id numbers.
+$specificRecipeID = $_GET['recipe'];
+
+$recipeID_cleaned = filter_var($specificRecipeID, FILTER_SANITIZE_NUMBER_INT);
+
+$query_temp = "SELECT r.`recipe_ID`, r.`name`, r.`author`, r.`url`, r.`picture_url`, r.`instructions`, r.`cookTime` FROM recipes as r WHERE r.`name` = $recipeID_cleaned";
+
 if ($result = $conn->query($query_temp)) {
     //print('Query okay');
     while ($row = $result->fetch_assoc()) {
@@ -37,7 +46,7 @@ if ($result = $conn->query($query_temp)) {
         $r_ID = $row['recipe_ID'];
 
         //print_r($recipe);
-        //Gets all ingredients with their quantities matching recipe ID
+
         if($ingredients = $conn->query("SELECT `name`,`name_str`,`count_type`,`count` FROM `ingredientsToRecipe` WHERE `recipe_id`='$r_ID'")){
             while($ing = $ingredients->fetch_assoc()){
                 $recipe['ingredient'][] = [
@@ -57,9 +66,4 @@ if ($result = $conn->query($query_temp)) {
     $output['data'] = 'Failed to connect to DB';
 }
 
-if($output['success']) {
-    $output_json = json_encode($output);
-    $featuredRecipeFile = fopen(__DIR__.'/featuredRecipeList.js', "w") or die("Unable to open file");
-    fwrite($featuredRecipeFile, "var featureRecipesList = $output_json;");
-    fclose($featuredRecipeFile);
-}
+print(json_encode($output));

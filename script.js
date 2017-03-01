@@ -1,13 +1,15 @@
-$(document).ready(function () {
+$(document).ready(function() {
     featuredRecipe();
     navIngredientButtons();
     getIngredients();
     buttonsPushedToMainDisplay();
     titleImgToModal();
+
 });
 /**
  * Global Variables
  */
+var ingredientsObjForAutocomplete;
 var updatedIngredientsArray;
 var newIngredients;
 var ingredientsID = [];
@@ -15,127 +17,144 @@ var selectedIngredients = {};
 /**
  * featuredRecipe - Default Menu Recipes
  */
-var featuredRecipe = function () {
-    console.log("featuredRecipe()");
+var featuredRecipe = function() {
+    //console.log("featuredRecipe()");
+    $.ajax({
+        url: "./db/recipe/featuredRecipeList.json",
+        dataType: "json",
+        method: "post",
+        success: function(featureRecipesList) {
+            var imgSrc;
+            var recipeName;
+            var authorName;
+            var url;
+            var instructions;
 
-    var imgSrc;
-    var recipeName;
-    var authorName;
-    var url;
-    var instructions;
+            for (var i = 0; i < featureRecipesList.data.length; i++) {
 
-    for (var i = 0; i < featureRecipesList.data.length; i++) {
+                imgSrc = featureRecipesList.data[i].img;
+                recipeName = featureRecipesList.data[i].name;
+                authorName = featureRecipesList.data[i].author;
+                url = featureRecipesList.data[i].url;
+                instructions = featureRecipesList.data[i].instructions;
 
-        imgSrc = featureRecipesList.data[i].img;
-        recipeName = featureRecipesList.data[i].name;
-        authorName = featureRecipesList.data[i].author;
-        url = featureRecipesList.data[i].url;
-        instructions=featureRecipesList.data[i].instructions;
+                var theDiv = $("<div>", {
+                    class: "col-md-3 col-sm-6 col-xs-12"
+                });
+                var outterDiv = $("<div>", {
+                    class: "card"
+                });
+                var img = $("<img>", {
+                    src: imgSrc,
+                    class: " thumbnail img-responsive cover",
+                    width: "100%",
+                    height: "286px",
+                    'data-toggle': "modal",
+                    'data-target': "#myModal"
+                });
+                var innerDiv = $("<div>", {
+                    class: "card-block",
+                    height: "100px" //set the height of card-block so cards in following rows will line up correctly
+                });
+                var h4 = $("<h4>", {
+                    class: "card-title",
+                    text: recipeName
+                });
+                var recipeUrl = $("<p>", {
+                    html: "<h3>Recipe Link</h3>" + '<a target="_blank" href="' + url + '">' + url + '</a>'
+                });
+                var ingDiv = $('<div>', {
+                    class: 'ingDiv',
+                    style: 'height: 0; overflow: hidden'
+                });
+                var steps = $("<div>", {
+                    class: "steps-style",
+                    html: "<h3>Instructions</h3>" + instructions
+                });
 
-        var theDiv = $("<div>", {
-            class: "col-md-3 col-sm-6 col-xs-12"
-        });
-        var outterDiv = $("<div>", {
-            class: "card"
-        });
-        var img = $("<img>", {
-            src: imgSrc,
-            class: " thumbnail img-responsive cover",
-            width: "100%",
-            height: "286px",
-            'data-toggle': "modal",
-            'data-target': "#myModal"
-        });
-        var innerDiv = $("<div>", {
-            class: "card-block",
-            height: "100px"         //set the height of card-block so cards in following rows will line up correctly
-        });
-        var h4 = $("<h4>", {
-            class: "card-title",
-            text: recipeName
-        });
-        var recipeUrl = $("<p>", {
-            html: "<h3>Recipe Link</h3>" + '<a href="' + url + '">' + url + '</a>'
-        });
-        var ingDiv = $('<div>', {
-            class: 'ingDiv',
-            style: 'height: 0; overflow: hidden'
-        });
-        var steps = $("<div>", {
-            class: "steps-style",
-            html: "<h3>Instructions</h3>"+instructions
-        });
+                $("#stuff").append(theDiv);
+                theDiv.append(outterDiv);
+                outterDiv.append(img, innerDiv);
+                innerDiv.append(h4);
 
-        $("#stuff").append(theDiv);
-        theDiv.append(outterDiv);
-        outterDiv.append(img, innerDiv);
-        innerDiv.append(h4);
+                var designatedIngredients;
+                for (var j = 0; j < featureRecipesList.data[i].ingredient.length; j++) {
+                    designatedIngredients = featureRecipesList.data[i].ingredient[j].string;
 
-        var designatedIngredients;
-        for (var j = 0; j < featureRecipesList.data[i].ingredient.length; j++) {
-            designatedIngredients = featureRecipesList.data[i].ingredient[j].string;
-
-            var listItem = $("<li>", {
-                class: "card-text",
-                html: designatedIngredients
-            });
-            ingDiv.append(listItem)
+                    var listItem = $("<li>", {
+                        class: "card-text",
+                        html: designatedIngredients
+                    });
+                    ingDiv.append(listItem);
+                }
+                innerDiv.append(ingDiv.append(steps, recipeUrl));
+            }
         }
-        innerDiv.append(ingDiv.append(steps,recipeUrl));
-    }
+    });
 };
 /**
  * getIngredients - Ajax call, auto complete, auto complete filter
  * @returns - data from get_ingredients.php
  */
-var getIngredients = function () {
+var getIngredients = function() {
     // -----------Auto Complete-----------
-    updatedIngredientsArray = [];
-    newIngredients = ingredientsObjForAutocomplete.data;
-    for (var key in newIngredients) {
-        if (newIngredients.hasOwnProperty(key)) {
-            updatedIngredientsArray.push(key);
-        }
-    }
-    autoCompleteFilter();
-    //-----Input Field Ingredient Invert to ID Numbers-----
+    $.ajax({
+        url: "./db/recipe/ingredients.json",
+        method: "post",
+        dataType: "json",
+        cache: false,
+        success: function(resp) {
+            ingredientsObjForAutocomplete = resp;
+            updatedIngredientsArray = [];
+            newIngredients = resp.data;
+            for (var key in newIngredients) {
+                if (newIngredients.hasOwnProperty(key)) {
+                    updatedIngredientsArray.push(key);
+                }
+            }
+            autoCompleteFilter();
 
-    //-----On Go Button-----
-    $(".btn.btn-danger").click(function () {
-        var ingredientInputSelected = $(".ingredientInput").val();
-        var objectData = ingredientsObjForAutocomplete.data[ingredientInputSelected];
-        ingredientCheck(objectData);
-        console.log("Ingredients Added to Fridge From Input", ingredientsID);
-        $(".ingredientInput").val("");
+            //-----Input Field Ingredient Invert to ID Numbers-----
+
+            //-----On Go Button-----
+            // $(".btn.btn-danger").click(function() {
+            //     var ingredientInputSelected = $(".ingredientInput").val();
+            //     var objectData = ingredientsObjForAutocomplete.data[ingredientInputSelected];
+            //     ingredientCheck(objectData);
+            //     //console.log("Ingredients Added to Fridge From Input", ingredientsID);
+            //     $(".ingredientInput").val("");
+            // });
+            // //-----On KeyPress Enter-----
+            // $('.ingredientInput').bind('keypress', function (enter) {
+            //     if (enter.keyCode == 13) {
+            //         var ingredientInputSelected = $(".ingredientInput").val();
+            //         var objectData = ingredientsObjForAutocomplete.data[ingredientInputSelected];
+            //         ingredientCheck(objectData);
+            //         console.log("Ingredients Added to Fridge From Input", ingredientsID);
+            //         $(".ingredientInput").val("");
+            //     }
+
+            // });
+        }
     });
-    // //-----On KeyPress Enter-----
-    // $('.ingredientInput').bind('keypress', function (enter) {
-    //     if (enter.keyCode == 13) {
-    //         var ingredientInputSelected = $(".ingredientInput").val();
-    //         var objectData = ingredientsObjForAutocomplete.data[ingredientInputSelected];
-    //         ingredientCheck(objectData);
-    //         console.log("Ingredients Added to Fridge From Input", ingredientsID);
-    //         $(".ingredientInput").val("");
-    //     }
-    // });
 };
 /**
  * getRecipe - Ajax call, dom creation when called
  * @returns - recipes from get_recipes.php
  */
-var getRecipe = function () {
+var getRecipe = function() {
+    //console.log('ingredients ids:', ingredientsID);
     loadStart();
     $.ajax({
-
-        url: "./db_prototype/get_recipes.php",
+        url: "./db/get_recipes.php",
         dataType: "json",
         method: "post",
         data: {
             ingredients: ingredientsID
         },
-        success: function (response) {
+        success: function(response) {
             loadStop();
-            console.log("data from get_recipes.php\n", response);
+            //console.log("data from get_recipes.php\n", response);
             clear();
             var authorName;
             var recipeName;
@@ -154,7 +173,7 @@ var getRecipe = function () {
                 recipeName = response.data[i].name;
                 imgSrc = response.data[i].img;
                 url = response.data[i].url;
-                instructions=response.data[i].instructions;
+                instructions = response.data[i].instructions;
 
                 var theDiv = $("<div>", {
                     class: "col-md-3 col-sm-6 col-xs-12"
@@ -172,14 +191,14 @@ var getRecipe = function () {
                 });
                 var innerDiv = $("<div>", {
                     class: "card-block",
-                    height: "100px"         //set the height of card-block cards in following rows will line up correctly
+                    height: "100px" //set the height of card-block cards in following rows will line up correctly
                 });
                 var h3 = $("<h3>", {
                     class: "card-title",
                     html: recipeName + "<div class='addthis_inline_share_toolbox_co79'></div>"
                 });
                 var recipeUrl = $("<p>", {
-                    html: "<h3>Recipe Link</h3>"+'<a href="' + url + '" target="_blank">' + url + '</a>'
+                    html: "<h3>Recipe Link</h3>" + '<a href="' + url + '" target="_blank">' + url + '</a>'
                 });
 
                 var ingDiv = $('<div>', {
@@ -189,7 +208,7 @@ var getRecipe = function () {
 
                 var steps = $("<div>", {
                     class: "steps-style",
-                    html: "<h3>Instructions</h3>"+instructions
+                    html: "<h3>Instructions</h3>" + instructions
                 });
 
                 $("#stuff").append(theDiv);
@@ -214,18 +233,18 @@ var getRecipe = function () {
                     $ingList.append(listItem);
                 }
                 ingDiv.append($ingList);
-                innerDiv.append(ingDiv.append(steps,recipeUrl));
+                innerDiv.append(ingDiv.append(steps, recipeUrl));
             }
         },
-        error: function () {
-            console.log("BROKEN")
+        error: function() {
+            console.log("Well, this is embarrassing");
         }
     });
 };
 /**
  * noExist - Dynamically Displays a Modal Telling user Their Ingredient does not exist
  */
-var noExist = function () {
+var noExist = function() {
 
     var modal = $("<div>", {
         class: "modal fade",
@@ -279,44 +298,53 @@ var noExist = function () {
 /**
  * navIngredientButtons - Creates Buttons from mostCommonIngredients.js and displays them on Nav menu
  */
-var navIngredientButtons = function () {
-    console.log("navIngredientButtons()")
-    var mostCommonIngredients2 = mostCommonIngredients.data;
-    var mostCommonIngredientsKeyNameArray = [];
-    var mostCommonIngredientsKeyValueArray = [];
+var navIngredientButtons = function() {
+    $.ajax({
+        url: './db/recipe/popularIngredients.json',
+        dataType: 'json',
+        method: 'post',
+        cache: false,
+        success: function(response) {
+            //console.log("navIngredientButtons()");
+            var mostCommonIngredients2 = response.data;
+            var mostCommonIngredientsKeyNameArray = [];
+            var mostCommonIngredientsKeyValueArray = [];
 
-    for (var key in mostCommonIngredients2) {
-        if (mostCommonIngredients2.hasOwnProperty(key)) {
-            mostCommonIngredientsKeyNameArray.push(key);
-            mostCommonIngredientsKeyValueArray.push(mostCommonIngredients2[key])
+            for (var key in mostCommonIngredients2) {
+                if (mostCommonIngredients2.hasOwnProperty(key)) {
+                    mostCommonIngredientsKeyNameArray.push(key);
+                    mostCommonIngredientsKeyValueArray.push(mostCommonIngredients2[key]);
+                }
+            }
+            (function() {
+                var ingredientValue;
+                var ingredientName;
+
+                for (var i = 0; i < mostCommonIngredientsKeyValueArray.length; i++) {
+                    ingredientValue = mostCommonIngredientsKeyValueArray[i];
+                }
+
+                for (var j = 0; j < mostCommonIngredientsKeyNameArray.length; j++) {
+                    ingredientName = mostCommonIngredientsKeyNameArray[j];
+                    ingredientValue = mostCommonIngredientsKeyValueArray[j];
+
+                    var button = $("<button>", {
+                        class: "btn btn-info topIng",
+                        html: ingredientName,
+                        value: ingredientValue
+                    });
+                    $("#ingredientButtons").append(button);
+                }
+            })();
         }
-    }
-    (function () {
-        var ingredientValue;
-        var ingredientName;
-
-        for (var i = 0; i < mostCommonIngredientsKeyValueArray.length; i++) {
-            ingredientValue = mostCommonIngredientsKeyValueArray[i];
-        }
-
-        for (var j = 0; j < mostCommonIngredientsKeyNameArray.length; j++) {
-            ingredientName = mostCommonIngredientsKeyNameArray[j];
-            ingredientValue = mostCommonIngredientsKeyValueArray[j];
-
-            var button = $("<button>", {
-                class: "btn btn-info topIng",
-                html: ingredientName,
-                value: ingredientValue
-            });
-            $("#ingredientButtons").append(button)
-        }
-    })()
+    });
 };
 /**
  * buttonsPushedToMainDisplay - Buttons On NAV to Main Display
  */
-var buttonsPushedToMainDisplay = function () {
-    $(".btn.btn-info.topIng").click(function () {
+var buttonsPushedToMainDisplay = function() {
+    //$(".btn.btn-info.topIng").click(function() {
+    $("#ingredientButtons").on("click", ".btn.btn-info.topIng", function() {
         $(this).addClass('selected'); //turns gray
 
         var val = $(this).attr("value");
@@ -324,7 +352,6 @@ var buttonsPushedToMainDisplay = function () {
 
         txtArr.push(txt);
         ingredientsID.push(val);
-        console.log("Ingredients Added to Fridge", ingredientsID);
         var newButton = newButtonCreation();
         var returnObject = {
             list_button: $(this),
@@ -338,19 +365,19 @@ var buttonsPushedToMainDisplay = function () {
 /**
  * getValue - Pushes Buttons to Container Using the "GO" Button
  */
-var theValue;
 var txtArr = [];
-var getValue = function () {
-    $('.ingredientInput').each(function () {
+var getValue = function() {
+    $('.ingredientInput').each(function() {
+        var theValue;
         theValue = $(this).val();
         txtArr.push(theValue);
-        newButtonCreation()
+        newButtonCreation();
     });
 };
 /**
  * removeIng - Removes Buttons off the Main Display and ingredientsID Array
  */
-var removeIng = function () {
+var removeIng = function() {
 
     var text = $(this).text();
 
@@ -359,24 +386,24 @@ var removeIng = function () {
     ingredientsID.splice(indexS, 1);
 
     $(this).closest("button").remove();
-    console.log("Selected: ", $(this).text());
-    console.log("Current Items in Fridge", ingredientsID);
+    //console.log("Selected: ", $(this).text());
+    //console.log("Current Items in Fridge", ingredientsID);
 
-    if(ingredientsID.length > 0){
-        getRecipe()
+    if (ingredientsID.length > 0) {
+        getRecipe();
     }
     getBackItems();
 
     /*removes class that was added when buttons from NAV are duplicated to Main Display;
      Then deletes text property in selectedIngredient */
-    selectedIngredients[text].list_button.removeClass('selected').prop('disabled', false);/*sets button back to blue and enables it again*/
+    selectedIngredients[text].list_button.removeClass('selected').prop('disabled', false); /*sets button back to blue and enables it again*/
     delete selectedIngredients[text];
 };
-var addClickHandlerToRemovableIngredient = function (element) {
+var addClickHandlerToRemovableIngredient = function(element) {
     element.on('click', removeIng);
 };
 //-----Creates Button-----
-var newButtonCreation = function () {
+var newButtonCreation = function() {
     var fridgeButton = $("<button>", {
         html: txtArr[txtArr.length - 1],
         class: "btn btn-info fridgeButton"
@@ -388,11 +415,10 @@ var newButtonCreation = function () {
 /**
  * ingredientCheck - CHECK IF ELEMENT IN INPUT FIELD MATCHES WITH ingredientID ARRAY
  */
-var ingredientCheck = function (ingredient) {
+var ingredientCheck = function(ingredient) {
     if (ingredient === undefined) {
         noExist();
-    }
-    else {
+    } else {
         ingredientsID.push(ingredient);
         getValue();
         getRecipe();
@@ -402,9 +428,9 @@ var ingredientCheck = function (ingredient) {
  * getBackItems - Checks length of ingredientsID array and if equates to 0;
  * If true then clears row to display main recipes in Main Display
  */
-var getBackItems = function () {
+var getBackItems = function() {
     if (ingredientsID.length === 0) {
-        console.log("getBackItems()");
+        //console.log("getBackItems()");
         clear();
         featuredRecipe();
     }
@@ -412,33 +438,33 @@ var getBackItems = function () {
 /**
  * Loading - Starts and then ends loading image for Ajax Calls
  */
-var loadStart = function () {
+var loadStart = function() {
     $("#loading").show();
 };
-var loadStop = function () {
+var loadStop = function() {
     $("#loading").hide();
 };
 /**
  * clear - clears row of recipes
  */
-var clear = function () {
-    $("#stuff").empty()
+var clear = function() {
+    $("#stuff").empty();
 };
 /**
  * autoCompleteFilter - Filter For Auto Complete
  */
-var autoCompleteFilter = function () {
+var autoCompleteFilter = function() {
     //var ingred = ingredientsObjForAutocomplete.data;
     $(".ingredientInput").autocomplete({
         //source: ingred,
         source: updatedIngredientsArray,
-        select: function(e, ui){
-            console.log("SELECTED");
+        select: function(e, ui) {
+            //console.log("SELECTED");
 
             var ingredient = ui.item.value;
             var value = ingredientsObjForAutocomplete.data[ingredient];
-            console.log(ingredient);
-            console.log(value);
+            //console.log(ingredient);
+            //console.log(value);
 
             txtArr.push(ingredient);
             ingredientsID.push(value);
@@ -453,9 +479,9 @@ var autoCompleteFilter = function () {
     });
 
     // Overrides the default autocomplete filter function to search only from the beginning of the string
-    $.ui.autocomplete.filter = function (array, term) {
+    $.ui.autocomplete.filter = function(array, term) {
         var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
-        return $.grep(array, function (value) {
+        return $.grep(array, function(value) {
             return matcher.test(value.label || value.value || value);
         });
     };
@@ -463,8 +489,8 @@ var autoCompleteFilter = function () {
 /**
  * titleImgToModal - Title and Image Inside Modal
  */
-var titleImgToModal = function () {
-    $('#stuff').on('click', 'img', function () {
+var titleImgToModal = function() {
+    $('#stuff').on('click', 'img', function() {
         var image = $(this).attr('src');
         var recipeTitle = $(this).parent().find(".card-title").text();
 
@@ -476,20 +502,18 @@ var titleImgToModal = function () {
 /**
  * toggleNav - Pushes Nav Bar to the Side
  */
-$(function () {
+$(function() {
     // Toggle Nav on Click
-    $('.toggle-nav').click(function () {
-        // Calling a function in case you want to expand upon this.
-        toggleNav();
-    });
+    $('.toggle-nav').click(toggleNav);
+    $('#main-container').click(closeNav);
 });
+
 function toggleNav() {
-    if ($('#site-wrapper').hasClass('show-nav')) {
-        // Do things on Nav Close
-        $('#site-wrapper').removeClass('show-nav');
-    } else {
-        // Do things on Nav Open
-        $('#site-wrapper').addClass('show-nav');
-    }
+    $('#site-wrapper').toggleClass('show-nav');
 }
 
+function closeNav() {
+  if($('#site-wrapper').hasClass('show-nav')) {
+    $('#site-wrapper').toggleClass('show-nav');
+  }
+}

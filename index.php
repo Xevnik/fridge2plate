@@ -2,7 +2,6 @@
 session_start();
 //$redirect_uri = "https://" . $_SERVER['HTTP_HOST'] . "/google_login/g_login.php";
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,7 @@ session_start();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
     <!--jQuery UI-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!--Login Scripts (FB & Google)-->
@@ -24,13 +23,11 @@ session_start();
 <!--    <script src="https://apis.google.com/js/platform.js" async defer></script>-->
 <!--    <script src="google_login/g_login.js" async defer></script>-->
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/fridge2plate.png">
-    <script src="./db_prototype/recipe/ingredients.js"></script>
-    <script src="./db_prototype/recipe/popularIngredients.js"></script>
-    <script src="./db_prototype/recipe/featuredRecipeList.js"></script>
-    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./images/fridge2plate.png">
+
+    <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
+    <script src="./script.js"></script>
 
     <style>
         .affix {
@@ -58,11 +55,11 @@ session_start();
                          <!--data-show-faces="false"-->
                          <!--data-auto-logout-link="true">-->
                 <!--</li>-->
-                <li><a href="google_login/g_login.php">Feature Recipe</a></li>
+                <li><a href="./google_login/g_login.php">Feature Recipe</a></li>
                 <li class="signIn"><a id="my-signin2" data-onsuccess="onSignIn"></a></li>
                 <!--<li class="signOut"><a href="#" onclick="signOut();">Sign out</a></li>-->
                 <script src="https://apis.google.com/js/platform.js" defer></script>
-                <script src="g_login_root.js" defer></script>
+                <script src="./g_login_root.js" defer></script>
             </ul>
         </div>
     </div>
@@ -71,7 +68,7 @@ session_start();
     <div id="site-canvas">
         <div id="site-menu" data-spy="affix" data-offset-top="205" >
             <a href="#" class="toggle-nav" style="color: pink; font-size: 20px;"><i class="fa fa-times"></i></a>
-            <img src="images/fridge2plate.png" id="logo" width="100%"><br> <br>
+            <img src="./images/fridge2plate.png" id="logo" width="100%"><br> <br>
             <form class="form-inline">
                 <input type="text" class="form-control ingredientInput"  size="30" placeholder="Enter your ingredients">
 <!--                <input type="text" class="form-control" placeholder="Enter your ingredients" size="30">-->
@@ -123,8 +120,8 @@ session_start();
                 </div>-->
             </div>
             <ul class="nav nav-pills nav-stacked" >
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
                 <li><a href=" http://devjournal.fridge2plate.com/" target="_blank">Our Blog</a></li>
 
             </ul>
@@ -133,13 +130,13 @@ session_start();
             <div class="row-container">
                 <div class="col-sm-12">
                     <div class="jumbotron text-center ">
-                        <img src="images/fridge2plate-jumbo.png" width="40%">
+                        <img src="./images/fridge2plate-jumbo.png" width="40%">
                         <p id="tagline">Making meals with ingredients you have</p>
                         <form class="form-inline">
                             <input type="text" class="form-control ingredientInput"  size="50" placeholder="What's in your fridge?">
-                            <button type="button" id="go-button" class="btn btn-danger">Go</button>
+                            <!-- <button type="button" id="placeholder-button" class="btn btn-danger">Go</button> -->
                         </form>
-                        <img src="images/loading-food-animation.gif" id="loading">
+                        <img src="./images/loading-food-animation.gif" id="loading">
                     </div>
                     <div class="container-fluid fridge"></div>    <!--fridge container-->
                     <div class="row-container">
@@ -161,7 +158,7 @@ session_start();
             </div>
             <div class="modal-body">
                 <div class="row">
-                <img class=" .col-sm-4  pull-right showImage img-responsive" src="">
+                <img class=" .col-sm-4  pull-right showImage img-responsive" src="#">
                 <div class=".col-sm-5  ingContainer"></div>
                     <div class="  addthis_inline_share_toolbox_co79"></div>
                 </div>
