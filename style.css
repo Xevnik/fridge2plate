@@ -197,8 +197,13 @@
     font-family: 'Raleway', sans-serif;
     /*font-size:25px;*/
     /*font-size: 22px;*/
-    font-size: 1.9vmin;
-}
+    font-size: 2.5vmin;
+    height: 73px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
 
 .card-text {
     font-size: 2rem;

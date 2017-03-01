@@ -513,7 +513,6 @@ function toggleNav() {
 }
 
 function closeNav() {
-  console.log("Closing nav");
   if($('#site-wrapper').hasClass('show-nav')) {
     $('#site-wrapper').toggleClass('show-nav');
   }
