@@ -20,7 +20,7 @@
 </body>
 <script>
     function getRecipes(){
-        console.log('Getting recipes');
+        //console.log('Getting recipes');
         $.ajax({
             dataType: 'json',
             method: 'get',
