@@ -343,7 +343,8 @@ var navIngredientButtons = function() {
  * buttonsPushedToMainDisplay - Buttons On NAV to Main Display
  */
 var buttonsPushedToMainDisplay = function() {
-    $(".btn.btn-info.topIng").click(function() {
+    //$(".btn.btn-info.topIng").click(function() {
+    $("#ingredientButtons").on("click", ".btn.btn-info.topIng", function() {
         $(this).addClass('selected'); //turns gray
 
         var val = $(this).attr("value");
@@ -351,7 +352,6 @@ var buttonsPushedToMainDisplay = function() {
 
         txtArr.push(txt);
         ingredientsID.push(val);
-        //console.log("Ingredients Added to Fridge", ingredientsID);
         var newButton = newButtonCreation();
         var returnObject = {
             list_button: $(this),
@@ -505,7 +505,7 @@ var titleImgToModal = function() {
 $(function() {
     // Toggle Nav on Click
     $('.toggle-nav').click(toggleNav);
-    $('site-canvas').click(closeNav);
+    $('#main-container').click(closeNav);
 });
 
 function toggleNav() {
@@ -513,7 +513,8 @@ function toggleNav() {
 }
 
 function closeNav() {
+  console.log("Closing nav");
   if($('#site-wrapper').hasClass('show-nav')) {
-    $('site-wrapper').toggleClass('show-nav')
+    $('#site-wrapper').toggleClass('show-nav');
   }
 }
