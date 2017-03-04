@@ -111,9 +111,13 @@
     backface-visibility: hidden;
 }
 
-.show-nav #site-canvas {
-    padding-right: 300px;
-    transform: translateX(300px);
+/*.show-nav #site-canvas {
+    padding-right: 0;
+    transform: translateX(0);
+}*/
+
+.show-nav #site-menu{
+  left: 0;
 }
 
 #site-menu {
@@ -315,17 +319,20 @@ h2 {
     margin-right: -19px;
 }
 
+.affix {
+    top: 212px;
+}
 @media only screen and (max-device-width: 1024px){
     .modal-dialog {
         width: 85%;
     }
 
-    .show-nav #site-canvas{
+    /*.show-nav #site-canvas{
       padding-right: 0;
       transform: translateX(0);
     }
 
     .show-nav #site-menu{
       left: 0;
-    }
+    }*/
 }
