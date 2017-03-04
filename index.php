@@ -28,13 +28,6 @@ session_start();
 
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-582e2e9ffdf9c863"></script>
     <script src="./script.js"></script>
-
-    <style>
-        .affix {
-            top: 212px;
-        }
-    </style>
-
 </head>
 <body>
 <nav class="navbar navbar-default">
