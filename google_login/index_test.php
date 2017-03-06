@@ -30,7 +30,6 @@ session_start();
  */
 $client = new Google_Client();
 $client->setClientId(CLIENT_ID);
-$client->setClientSecret(CLIENT_SECRET);
 $client->setRedirectUri(REDIRECT_URI);
 $client->setScopes('email');
 $plus = new Google_Service_Plus($client);

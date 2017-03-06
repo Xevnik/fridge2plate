@@ -98,7 +98,7 @@ function validateForm() {
             $(this).addClass('missing-input-placeholder').effect("shake", options, 400);
             validForm = false;
         }
-    })
+    });
 }
 
 /**
