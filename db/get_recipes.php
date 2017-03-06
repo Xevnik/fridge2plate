@@ -29,7 +29,7 @@ $userIngredients = $_POST['ingredients'];
 
 /**
  * Review this code
- * this scores recipes depending how many ingredients are matched
+ * this scores recipes on how many ingredients are matched with the users' ingredients
  */
 $query_scoring_part = '0';
 
@@ -41,7 +41,7 @@ foreach ($userIngredients as $ingredient_id) {
                                     AND itr.ingred_id=' . $ingredient_id . '
                                )';
 }
-
+//Get first 20 recipes with matched ingredients > 0
 $query_temp = 'SELECT r.`recipe_ID`, r.`name`, r.`author`, r.`url`, r.`picture_url`, r.`instructions`, r.`cookTime`,' . $query_scoring_part . ' AS match_count
                FROM recipes r
                HAVING `match_count` > 0
@@ -72,6 +72,8 @@ $query_temp = 'SELECT r.`recipe_ID`, r.`name`, r.`author`, r.`url`, r.`picture_u
 if ($result = $conn->query($query_temp)) {
     //print('Query okay');
     while ($row = $result->fetch_assoc()) {
+
+      //Recipe object
         $recipe = [
             'id'=>$row['recipe_ID'],
             'name'=>$row['name'],
@@ -82,10 +84,10 @@ if ($result = $conn->query($query_temp)) {
             'cookTime'=>$row['cookTime'],
             'ingredient'=>[]
         ];
+        //Use recipe id to find corresponding ingredients
         $r_ID = $row['recipe_ID'];
 
-        //print_r($recipe);
-
+        //Ingredient object for individual recipes
         if($ingredients = $conn->query("SELECT `name`,`name_str`,`count_type`,`count` FROM `ingredientsToRecipe` WHERE `recipe_id`='$r_ID'")){
             while($ing = $ingredients->fetch_assoc()){
                 $recipe['ingredient'][] = [

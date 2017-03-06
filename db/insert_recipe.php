@@ -7,7 +7,7 @@
  */
 
 /**
- * Insert Recipes and Ingredients
+ * Insert Recipes and Ingredients into database
  */
 function insertRecipesAndItsIngredients($connect, $recipesList){
     //prepare for recipe insert

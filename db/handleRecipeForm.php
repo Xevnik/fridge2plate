@@ -8,15 +8,15 @@
 
 require_once("./config/connect.php");
 
-require_once("./Insert_recipe_ingredients.php");
+require_once("./Insert_featuredrecipe_ingredients.php");
 
 $output = [
     "success"=>false,
     "data"=>""
 ];
-//Limits the amount of
+//Trims featured recipe list to be 20 recipes long.
 if($conn->query("DELETE FROM `featuredRecipes`
-              WHERE `featured_ID` NOT IN 
+              WHERE `featured_ID` NOT IN
               (
                   SELECT `featured_ID`
                   FROM (

@@ -5,7 +5,7 @@
  * Date: 11/28/16
  * Time: 9:13 AM
  *
- * get all ingredients and its ID from db
+ * get all ingredients and its ID from database
  */
 require_once('config/connect.php');
 
