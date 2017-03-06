@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$redirect_uri_logged_in = 'https://' . $_SERVER['HTTP_HOST'] . '/jef_braintree/index.php';
+$redirect_uri_logged_in = 'https://' . $_SERVER['HTTP_HOST'] . '/braintree/index.php';
 
 if (isset($_SESSION['user'])) {
     $f_name = $_SESSION['user']['f_name'];

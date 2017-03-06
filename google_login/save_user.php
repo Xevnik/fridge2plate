@@ -16,7 +16,7 @@ if(empty($_SESSION['user']) && isset($_POST['id'])){
     ];
 
     //$mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-    require_once("../db_prototype/config/connect.php");
+    require_once("../db/config/connect.php");
     if ($conn->connect_error) {
         die('Error : (' . $conn->connect_errno . ') ' . $conn->connect_error);
     }
