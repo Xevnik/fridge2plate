@@ -50,7 +50,7 @@ require_once("braintree_init.php");
                 <p><?php echo($message)?></p>
             </section>
             <section>
-                <a class="button primary back" href="../db_prototype/feature_recipe/index.php">
+                <a class="button primary back" href="../db/feature_recipe/index.php">
                     <span>Add Recipe</span>
                 </a>
             </section>
