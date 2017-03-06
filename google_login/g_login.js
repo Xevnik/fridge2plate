@@ -28,7 +28,7 @@ function onSignIn(googleUser) {
         dataType: 'json',
         success: function(resp){
             // console.log(resp);
-            window.location.href = "../jef_braintree/index.php";
+            window.location.href = "../braintree/index.php";
         }, error: function(resp){
             // console.log(resp);
         }
