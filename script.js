@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    //featuredRecipe();
     getRecipe();
     navIngredientButtons();
     getIngredients();
@@ -357,7 +356,7 @@ var getBackItems = function() {
     if (ingredientsID.length === 0) {
         //console.log("getBackItems()");
         clear();
-        featuredRecipe();
+        getRecipe();
     }
 };
 /**
