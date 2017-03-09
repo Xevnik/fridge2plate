@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    featuredRecipe();
+    getRecipe();
     navIngredientButtons();
     getIngredients();
     buttonsPushedToMainDisplay();
@@ -14,84 +14,7 @@ var updatedIngredientsArray;
 var newIngredients;
 var ingredientsID = [];
 var selectedIngredients = {};
-/**
- * featuredRecipe - Default Menu Recipes
- */
-var featuredRecipe = function() {
-    //console.log("featuredRecipe()");
-    $.ajax({
-        url: "./db/recipe/featuredRecipeList.json",
-        dataType: "json",
-        method: "post",
-        success: function(featureRecipesList) {
-            var imgSrc;
-            var recipeName;
-            var authorName;
-            var url;
-            var instructions;
 
-            for (var i = 0; i < featureRecipesList.data.length; i++) {
-
-                imgSrc = featureRecipesList.data[i].img;
-                recipeName = featureRecipesList.data[i].name;
-                authorName = featureRecipesList.data[i].author;
-                url = featureRecipesList.data[i].url;
-                instructions = featureRecipesList.data[i].instructions;
-
-                var theDiv = $("<div>", {
-                    class: "col-md-3 col-sm-6 col-xs-12"
-                });
-                var outterDiv = $("<div>", {
-                    class: "card"
-                });
-                var img = $("<img>", {
-                    src: imgSrc,
-                    class: " thumbnail img-responsive cover",
-                    width: "100%",
-                    height: "286px",
-                    'data-toggle': "modal",
-                    'data-target': "#myModal"
-                });
-                var innerDiv = $("<div>", {
-                    class: "card-block",
-                    height: "100px" //set the height of card-block so cards in following rows will line up correctly
-                });
-                var h4 = $("<h4>", {
-                    class: "card-title",
-                    text: recipeName
-                });
-                var recipeUrl = $("<p>", {
-                    html: "<h3>Recipe Link</h3>" + '<a target="_blank" href="' + url + '">' + url + '</a>'
-                });
-                var ingDiv = $('<div>', {
-                    class: 'ingDiv',
-                    style: 'height: 0; overflow: hidden'
-                });
-                var steps = $("<div>", {
-                    class: "steps-style",
-                    html: "<h3>Instructions</h3>" + instructions
-                });
-
-                $("#stuff").append(theDiv);
-                theDiv.append(outterDiv);
-                outterDiv.append(img, innerDiv);
-                innerDiv.append(h4);
-
-                var designatedIngredients;
-                for (var j = 0; j < featureRecipesList.data[i].ingredient.length; j++) {
-                    designatedIngredients = featureRecipesList.data[i].ingredient[j].string;
-
-                    var listItem = $("<li>", {
-                        class: "card-text",
-                        html: designatedIngredients
-                    });
-                    ingDiv.append(listItem);
-                }
-                innerDiv.append(ingDiv.append(steps, recipeUrl));
-            }
-        }
-    });
-};
 /**
  * getIngredients - Ajax call, auto complete, auto complete filter
  * @returns - data from get_ingredients.php
@@ -146,7 +69,8 @@ var getRecipe = function() {
     //console.log('ingredients ids:', ingredientsID);
     loadStart();
     $.ajax({
-        url: "./db/get_recipes.php",
+        //No ingredients to parse recipe, display feature recipes instead
+        url: (ingredientsID.length) ? "./db/get_recipes.php" : "./db/recipe/featuredRecipeList.json",
         dataType: "json",
         method: "post",
         data: {
@@ -195,10 +119,10 @@ var getRecipe = function() {
                 });
                 var h3 = $("<h3>", {
                     class: "card-title",
-                    html: recipeName + "<div class='addthis_inline_share_toolbox_co79'></div>"
+                    html: recipeName
                 });
                 var recipeUrl = $("<p>", {
-                    html: "<h3>Recipe Link</h3>" + '<a href="' + url + '" target="_blank">' + url + '</a>'
+                    html: "<h3>Recipe Link</h3>" + '<a href="' + url + '" target="_blank">Click me!</a>'
                 });
 
                 var ingDiv = $('<div>', {
@@ -432,7 +356,7 @@ var getBackItems = function() {
     if (ingredientsID.length === 0) {
         //console.log("getBackItems()");
         clear();
-        featuredRecipe();
+        getRecipe();
     }
 };
 /**
@@ -513,7 +437,7 @@ function toggleNav() {
 }
 
 function closeNav() {
-  if($('#site-wrapper').hasClass('show-nav')) {
-    $('#site-wrapper').toggleClass('show-nav');
-  }
+    if ($('#site-wrapper').hasClass('show-nav')) {
+        $('#site-wrapper').toggleClass('show-nav');
+    }
 }
