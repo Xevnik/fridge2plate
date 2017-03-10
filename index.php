@@ -63,7 +63,7 @@ session_start();
             <a href="#" class="toggle-nav" style="color: pink; font-size: 20px;"><i class="fa fa-times"></i></a>
             <img src="./images/fridge2plate.png" id="logo" width="100%"><br> <br>
             <form class="form-inline">
-                <input type="text" class="form-control ingredientInput"  size="30" placeholder="Enter your ingredients">
+                <input type="text" class="form-control ingredientInput"  size="26" placeholder="Enter your ingredients">
             </form>
             <br>
             <div class="panel-group" id="accordion" >
@@ -80,7 +80,6 @@ session_start();
                 </div>
             </div>
             <ul class="nav nav-pills nav-stacked" >
-                <li><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
                 <li><a href=" http://devjournal.fridge2plate.com/" target="_blank">Our Blog</a></li>
             </ul>

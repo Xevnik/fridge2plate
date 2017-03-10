@@ -75,7 +75,7 @@
 }
 
 .nav-menu {
-    margin: 0px 20px 0px 30px;
+    margin: 0 20px 0 30px;
     /*top right bottom left*/
 }
 
@@ -199,8 +199,6 @@
 
 .card-title {
     font-family: 'Raleway', sans-serif;
-    /*font-size:25px;*/
-    /*font-size: 22px;*/
     font-size: 22px;
     height: 73px;
     overflow: hidden;
@@ -258,10 +256,21 @@ ol {
 }
 
 #aboutImg {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 20px;
-    margin-top: 20px
+    display: block;
+    width: 91vh;
+    margin: 33px auto auto;
+}
+
+#aboutContainer{
+    background-color: white;
+    width: 91vmin;
+    padding-bottom: 22px;
+    border-radius: 5px;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
+}
+
+.aboutColor{
+    background-color: rgba(26, 188, 156, 0.63);
 }
 
 .addthis_inline_share_toolbox_co79 {
@@ -283,7 +292,7 @@ ol {
     background-size: cover;
 }
 
-.container {
+.addContainer {
     background-color: white;
     font-family: "Raleway", sans-serif;
     width: 90vmin;

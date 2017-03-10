@@ -4,7 +4,7 @@
 <?php require_once("head.php"); ?>
 
 <body class="body-style">
-<div class="container">
+<div class="container addContainer">
     <h2 class="addRecipe">Add Your Recipe</h2>
     <form action="" method="post" class="form-horizontal col-sm-offset-1 col-sm-10 ingredient-form">
         <legend>Recipe:</legend>
