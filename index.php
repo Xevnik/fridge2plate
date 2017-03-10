@@ -80,7 +80,6 @@ session_start();
                 </div>
             </div>
             <ul class="nav nav-pills nav-stacked" >
-                <li><a href="./index.php">Home</a></li>
                 <li><a href="./about.html">About</a></li>
                 <li><a href=" http://devjournal.fridge2plate.com/" target="_blank">Our Blog</a></li>
             </ul>
