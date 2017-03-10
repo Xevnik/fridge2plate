@@ -257,13 +257,14 @@ ol {
 
 #aboutImg {
     display: block;
-    width: 91vh;
-    margin: 33px auto auto;
+    width: 100%;
+    margin-top:17px;
 }
 
 #aboutContainer{
     background-color: white;
     width: 91vmin;
+    margin-top:45px;
     padding-bottom: 22px;
     border-radius: 5px;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
