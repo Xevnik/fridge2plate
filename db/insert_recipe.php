@@ -45,7 +45,7 @@ function insertRecipesAndItsIngredients($connect, $recipesList){
         $r_name = trim($recipe['name']);
         $r_author = trim($recipe['author']);
         $r_url = trim($recipe['url']);
-        $r_img = ($recipe['img']==="")?"/images/placeholder_360.jpg":trim($recipe['img']);
+        $r_img = ($recipe['img']==="")?"./images/placeholder_360.jpg":trim($recipe['img']);
         $r_instruct = trim($recipe['instructions']);
         $r_time = $recipe['cookingTime'];
         //insert recipe and proceed if insert is successful
