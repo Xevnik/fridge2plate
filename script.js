@@ -121,8 +121,8 @@ var getRecipe = function() {
                     class: "card-title",
                     html: recipeName
                 });
-                var recipeUrl = $("<p>", {
-                    html: "<h3>Recipe Link</h3>" + '<a href="' + url + '" target="_blank">Click me!</a>'
+                var recipeUrl = $("<div>", {
+                    html: '<h3>Recipe Link</h3>' + '<a href="' + url + '" target="_blank">Click me!</a>'
                 });
 
                 var ingDiv = $('<div>', {

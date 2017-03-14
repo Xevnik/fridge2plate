@@ -8,7 +8,6 @@ session_start();
     <!--Google Login Meta Tags-->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="802478348342-ovn07tr2ulnqnqk06j94cga951pufnib.apps.googleusercontent.com">
-
     <meta name="title" content="Fridge 2 Plate">
     <meta name="description" content="Take your ingredients from the fridge to your plate with awesome recipes.">
 
@@ -127,7 +126,6 @@ session_start();
                 <div class="row">
                 <img class=" .col-sm-4  pull-right showImage img-responsive" src="#">
                 <div class=".col-sm-5  ingContainer"></div>
-                    <div class="addthis_inline_share_toolbox_co79"></div>
                 </div>
             </div>
             <div class="modal-footer">
