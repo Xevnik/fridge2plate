@@ -61,9 +61,9 @@ session_start();
         <div id="site-menu" data-spy="affix" data-offset-top="205" >
             <a href="#" class="toggle-nav" style="color: pink; font-size: 20px;"><i class="fa fa-times"></i></a>
             <img src="./images/fridge2plate.png" id="logo" width="100%"><br> <br>
-            <form class="form-inline">
-                <input type="text" class="form-control ingredientInput"  size="30" placeholder="Enter your ingredients">
-            </form>
+            <!-- <form class="form-inline">
+                <input type="text" class="form-control ingredientInput"  size="30" placeholder="Add Ingredients">
+            </form> -->
             <br>
             <div class="panel-group" id="accordion" >
                 <div class="panel panel-info">
@@ -72,12 +72,29 @@ session_start();
                             <i class="fa fa-shopping-basket"></i>&nbsp;&nbsp; <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> Common Ingredients</a>
                         </h4>
                     </div>
+                    <input type="text" class="form-control ingredientInput"  size="30" placeholder="Add Ingredients">
                     <div id="collapse1" class="panel-collapse collapse in">
                         <div class="panel-body" id="ingredientButtons">
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- End Common Ingredients -->
+            <div class="panel-group" id="accordion" >
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <i class="fa fa-times-circle"></i>&nbsp;&nbsp; <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"> Exclude These</a>
+                        </h4>
+                    </div>
+                    <input type="text" class="form-control ingredientInput"  placeholder="Exclude: ">
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body" id="ingredientButtons">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Excluded Ingredients -->
             <ul class="nav nav-pills nav-stacked" >
                 <li><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>

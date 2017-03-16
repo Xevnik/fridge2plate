@@ -129,7 +129,7 @@
     background: white;
     z-index: 10;
     transition: 0.3s;
-
+    border-right: 1px solid #5fd0ba;
 }
 
 #logo {
